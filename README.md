@@ -1,5 +1,4 @@
 # Group-System-for-Unity
-This system will allow you to place your objects in groups and access them
 
 This system will allow you to add your object to a group of similar objects, you can think of it as a multi "Tag". Also, this system allows you to get from any group random objects or even get the whole group and put in an array.
 
