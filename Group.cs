@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
-using ToolBox.Attributes;
+using NaughtyAttributes;
 
 [CreateAssetMenu(menuName = "ToolBox/Group")]
 public class Group : ScriptableObject
