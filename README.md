@@ -1,6 +1,6 @@
 # Group-System-for-Unity
 
-This system will allow you to add your object to a group of similar objects, you can think of it as a multi "Tag". Also, this system allows you to get from any group random objects or even get the whole group and put in an array.
+This system will allow you to add your object to a group of similar objects, you can think of it as a multi-tag. Also, this system allows you to get from any group random objects or even get the whole group and put in an list.
 
 ## Requirements
 [NaughtyAttributes](https://github.com/dbrizov/NaughtyAttributes) for some attributes (not necessary, you can just remove the extra attributes).
