@@ -52,7 +52,7 @@ public class GiveItem : MonoBehaviour
 
 	private void GiveItemToGoblinMerchants()
 	{
-		for (int i = 0; i < goblins.Length; i++)
+		for (int i = 0; i < goblins.Count; i++)
 		{
 			// Give item to goblins
 		}
