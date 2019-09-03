@@ -42,17 +42,17 @@ using UnityEngine;
 public class GiveItem : MonoBehaviour
 {
 	[SerializeField] private Group goblinMerchants;
+	[SerializeField] private GameObject[] goblins;
 
 	private void Start()
 	{
+		goblins = goblinMerchants.GetAllMembersInGroup();
 		GiveItemToGoblinMerchants();
 	}
 
 	private void GiveItemToGoblinMerchants()
 	{
-		GameObject[] allGoblinMerchants = goblinMerchants.GetAllMembersInGroup();
-
-		for (int i = 0; i < allGoblinMerchants.Length; i++)
+		for (int i = 0; i < goblins.Length; i++)
 		{
 			// Give item to goblins
 		}
@@ -60,3 +60,5 @@ public class GiveItem : MonoBehaviour
 }
 
 ```
+
+### Example with checking if the desired goal is in the right groups.
