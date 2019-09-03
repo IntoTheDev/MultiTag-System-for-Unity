@@ -4,6 +4,7 @@ This system will allow you to add your object to a group of similar objects, you
 
 ## Requirements
 [NaughtyAttributes](https://github.com/dbrizov/NaughtyAttributes) for some attributes (not necessary, you can just remove the extra attributes).
+
 Patience to read my bad English
 
 ## Performance
