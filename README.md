@@ -5,6 +5,15 @@ This system will allow you to add your object to a group of similar objects, you
 ## Requirements
 [NaughtyAttributes](https://github.com/dbrizov/NaughtyAttributes) for some attributes.
 
+## Performance
+I did some performance testing. My group check works a little faster in most cases, it also removes the need to work with strings, allows you to check the object for a lot of "tags" and a few other interesting things.
+
+Test with 1000 of GameObjects and 100 000 of iterations 
+ 
+Tag check performance = ~62 FPS & ~14 Self MS
+
+Group check performance = ~74 FPS & ~12.3 Self MS 
+
 ## Usage
 Throw scripts from this repository into your project
 
@@ -15,7 +24,7 @@ You can create a group through the context menu in the project folder. This will
 
 ### Attach an object to a group/groups
 
-Simply attach the "Member" script to the object you want to add to the desired groups and add the desired groups using the inspector.
+Simply attach the "Member" script to the object you want to add to the desired groups.
 
 ![MemberScript](https://i.gyazo.com/10a39a8cdd0050065923af66082fb111.png)
 
@@ -62,3 +71,38 @@ public class GiveItem : MonoBehaviour
 ```
 
 ### Example with checking if the desired target is in the right groups.
+
+Imagine that we have a bullet that can set ignite to enemies who are not immune to ignite. Instead of adding to our enemy components of immunity, such as immunity to ignite, cold and others. We can add this enemy in a group with the name "ImmuteToIgnite"
+
+```csharp
+using UnityEngine;
+
+public class BurningBullet : MonoBehaviour
+{
+	[SerializeField] private Vector3 bulletSpeed;
+	[SerializeField] private Group immuneEnemies;
+
+	private Transform myTransform;
+
+	private void Update()
+	{
+		myTransform.position += bulletSpeed * Time.deltaTime;
+	}
+
+	private void OnTriggerEnter(Collider enemy)
+	{
+		// 2x Faster
+		if (!immuneEnemies.HasMember(enemy.gameObject))
+		{
+			// Burn enemy
+		}
+
+		// 2x slower
+		if (!enemy.GetComponent<ImmuneToIgnite>())
+		{
+			// Burn enemy
+		}
+	}
+}
+
+```
