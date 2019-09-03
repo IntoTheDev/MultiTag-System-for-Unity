@@ -64,12 +64,12 @@ public class Group : ScriptableObject
 	/// <summary>
 	/// Returns a certain number of group members
 	/// </summary>
-	public GameObject[] GetRandomMembersInGroup(int count)
+	public List<GameObject> GetRandomMembersInGroup(int count)
 	{
 		if (IsGroupEmpty())
 			return null;
 
-		GameObject[] randomObjects = new GameObject[count];
+		List<GameObject> randomObjects = new List<GameObject>(count);
 		int randomIndex = -1;
 
 		for (int i = 0; i < count; i++)
@@ -93,13 +93,12 @@ public class Group : ScriptableObject
 	/// <summary>
 	/// Returns all group members
 	/// </summary>
-	public GameObject[] GetAllMembersInGroup()
+	public List<GameObject> GetAllMembersInGroup()
 	{
 		if (IsGroupEmpty())
 			return null;
 
-		GameObject[] allMembers = new GameObject[membersCount];
-		allMembers = listMembers.ToArray();
+		List<GameObject> allMembers = new List<GameObject>(listMembers);
 
 		return allMembers;
 	}
