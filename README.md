@@ -46,7 +46,7 @@ public class GiveItem : MonoBehaviour
 
 	private void Start()
 	{
-		goblins = goblinMerchants.GetAllMembersInGroup();
+		goblins = goblinMerchants.GetAllMembers();
 		GiveItemToGoblinMerchants();
 	}
 
