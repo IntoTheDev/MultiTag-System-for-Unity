@@ -22,7 +22,8 @@ public class Member : MonoBehaviour
 
 	private void OnValidate()
 	{
-		groupsCount = groups.Length;
+		if (groups != null && groups.Length > 0)
+			groupsCount = groups.Length;
 	}
 
 	private void OnEnable()
