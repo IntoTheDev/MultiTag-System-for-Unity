@@ -12,11 +12,8 @@ Throw scripts from this repository into your project
 ### Group creation
 You can create a group through the context menu in the project folder. This will create a ScriptableObject in your folder.
 
-[![Group Creation](https://i.gyazo.com/14ecd854f94ccaeba75405147aa10850.png)]
-
-
-
-
-
+![Group Creation](https://i.gyazo.com/14ecd854f94ccaeba75405147aa10850.png)
 
 ### Attach an object to a group/groups
+
+![Member](https://i.gyazo.com/10a39a8cdd0050065923af66082fb111.png)
