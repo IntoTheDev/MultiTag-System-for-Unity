@@ -16,4 +16,47 @@ You can create a group through the context menu in the project folder. This will
 
 ### Attach an object to a group/groups
 
-![Member](https://i.gyazo.com/10a39a8cdd0050065923af66082fb111.png)
+Simply attach the "Member" script to the object you want to add to the desired groups and add the desired groups using the inspector.
+
+![MemberScript](https://i.gyazo.com/10a39a8cdd0050065923af66082fb111.png)
+
+### Examples
+
+#### Example with getting all objects from the group.
+
+Let's say you have in the game merchants of different races and you want to give the item called "Goblin dagger" only to merchants of Goblin race. 
+
+We have such groups in the game and adding a dagger to Goblin merchants is very simple.
+
+![Example00](https://i.gyazo.com/d66e91d567f7bc5d9ac2bd7a9f7e2043.png)
+
+Add a "GiveItem" script to Goblin merchants.
+
+![Example01](https://i.gyazo.com/49d96516a3f53a6fde6e695c3a1dad07.png)
+
+And write some code
+
+```csharp
+using UnityEngine;
+
+public class GiveItem : MonoBehaviour
+{
+	[SerializeField] private Group goblinMerchants;
+
+	private void Start()
+	{
+		GiveItemToGoblinMerchants();
+	}
+
+	private void GiveItemToGoblinMerchants()
+	{
+		GameObject[] allGoblinMerchants = goblinMerchants.GetAllMembersInGroup();
+
+		for (int i = 0; i < allGoblinMerchants.Length; i++)
+		{
+			// Give item to goblins
+		}
+	}
+}
+
+```
