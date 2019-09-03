@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using ToolBox.Attributes;
+using UnityEngine;
+using NaughtyAttributes;
 
 [DisallowMultipleComponent]
 public class Member : MonoBehaviour
