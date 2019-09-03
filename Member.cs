@@ -1,5 +1,5 @@
-using UnityEngine;
-using NaughtyAttributes;
+﻿using UnityEngine;
+using ToolBox.Attributes;
 
 [DisallowMultipleComponent]
 public class Member : MonoBehaviour
@@ -30,7 +30,7 @@ public class Member : MonoBehaviour
 	{
 		for (int i = 0; i < groupsCount; i++)
 		{
-			groups[i].AddToGroup(cachedGameObject);
+			groups[i].AddMember(cachedGameObject);
 		}
 	}
 
@@ -38,7 +38,7 @@ public class Member : MonoBehaviour
 	{
 		for (int i = 0; i < groupsCount; i++)
 		{
-			groups[i].RemoveFromGroup(cachedGameObject);
+			groups[i].RemoveMember(cachedGameObject);
 		}
 	}
 }

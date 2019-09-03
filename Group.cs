@@ -1,6 +1,6 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections.Generic;
-using NaughtyAttributes;
+using ToolBox.Attributes;
 
 [CreateAssetMenu(menuName = "ToolBox/Group")]
 public class Group : ScriptableObject
@@ -16,7 +16,7 @@ public class Group : ScriptableObject
 	/// <summary>
 	/// Adds a target to the group
 	/// </summary>
-	public void AddToGroup(GameObject target)
+	public void AddMember(GameObject target)
 	{
 		if (!hashMebmers.Contains(target))
 		{
@@ -30,7 +30,7 @@ public class Group : ScriptableObject
 	/// <summary>
 	/// Removes a target from the group
 	/// </summary>
-	public void RemoveFromGroup(GameObject target)
+	public void RemoveMember(GameObject target)
 	{
 		if (hashMebmers.Contains(target))
 		{
@@ -44,7 +44,7 @@ public class Group : ScriptableObject
 	/// <summary>
 	/// Checks if the target is in a group
 	/// </summary>
-	public bool IsTargetInGroup(GameObject target)
+	public bool HasMember(GameObject target)
 	{
 		return hashMebmers.Contains(target);
 	}
@@ -52,7 +52,7 @@ public class Group : ScriptableObject
 	/// <summary>
 	/// Returns a random member of the group
 	/// </summary>
-	public GameObject GetRandomMemberInGroup()
+	public GameObject GetRandomMember()
 	{
 		if (IsGroupEmpty())
 			return null;
@@ -64,7 +64,7 @@ public class Group : ScriptableObject
 	/// <summary>
 	/// Returns a certain number of group members
 	/// </summary>
-	public List<GameObject> GetRandomMembersInGroup(int count)
+	public List<GameObject> GetRandomMembers(int count)
 	{
 		if (IsGroupEmpty())
 			return null;
@@ -93,7 +93,7 @@ public class Group : ScriptableObject
 	/// <summary>
 	/// Returns all group members
 	/// </summary>
-	public List<GameObject> GetAllMembersInGroup()
+	public List<GameObject> GetAllMembers()
 	{
 		if (IsGroupEmpty())
 			return null;
@@ -114,7 +114,7 @@ public class Group : ScriptableObject
 		{
 			for (int i = 0; i < groupsCount; i++)
 			{
-				if (!groups[i].IsTargetInGroup(target))
+				if (!groups[i].HasMember(target))
 					return false;
 			}
 
@@ -124,7 +124,7 @@ public class Group : ScriptableObject
 		{
 			for (int i = 0; i < groupsCount; i++)
 			{
-				if (groups[i].IsTargetInGroup(target))
+				if (groups[i].HasMember(target))
 					return true;
 			}
 
