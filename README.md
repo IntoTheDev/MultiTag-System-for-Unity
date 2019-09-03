@@ -10,4 +10,4 @@ This system will allow you to add your object to a group of similar objects, you
 Throw scripts from this repository into your project
 
 ### Group creation
-(https://gyazo.com/14ecd854f94ccaeba75405147aa10850.jpeg)
+[![https://gyazo.com/14ecd854f94ccaeba75405147aa10850](https://i.gyazo.com/14ecd854f94ccaeba75405147aa10850.png)](https://gyazo.com/14ecd854f94ccaeba75405147aa10850)
