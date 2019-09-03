@@ -3,7 +3,7 @@
 This system will allow you to add your object to a group of similar objects, you can think of it as a multi "Tag". Also, this system allows you to get from any group random objects or even get the whole group and put in an array.
 
 ## Requirements
-[NaughtyAttributes](https://github.com/dbrizov/NaughtyAttributes) for some attributes.
+[NaughtyAttributes](https://github.com/dbrizov/NaughtyAttributes) for some attributes (not necessary, you can just remove the extra attributes).
 
 ## Performance
 I did some performance testing. My group check works a little faster in most cases, it also removes the need to work with strings, allows you to check the object for a lot of "tags" and a few other interesting things.
