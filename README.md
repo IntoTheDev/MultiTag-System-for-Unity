@@ -37,11 +37,12 @@ And write some code
 
 ```csharp
 using UnityEngine;
+using System.Collections.Generic;
 
 public class GiveItem : MonoBehaviour
 {
 	[SerializeField] private Group goblinMerchants;
-	[SerializeField] private GameObject[] goblins;
+	[SerializeField] private List<GameObjects> goblins = new List<GameObjects>();
 
 	private void Start()
 	{
