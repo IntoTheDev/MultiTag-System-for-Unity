@@ -61,4 +61,4 @@ public class GiveItem : MonoBehaviour
 
 ```
 
-### Example with checking if the desired goal is in the right groups.
+### Example with checking if the desired target is in the right groups.
