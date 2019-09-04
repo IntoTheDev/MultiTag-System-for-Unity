@@ -8,13 +8,60 @@ This system will allow you to add your object to a group of similar objects, you
 Patience to read my bad English
 
 ## Performance
-I did some performance testing. My group check works a little faster in most cases, it also removes the need to work with strings, allows you to check the object for a lot of "tags" and a few other interesting things.
+I have 5000 objects, 2500 with the tag "Human" and 2500 with the tag "Zombie". My task is to find all the zombies and destroy them.
 
-Test with 1000 of GameObjects and 100 000 of iterations 
- 
-Tag check performance = ~62 FPS & ~14 Self MS
+Classic way:
+```csharp
+zombies = GameObject.FindGameObjectsWithTag("Zombie");
+```
+It cost me: 19.6 KB GC Alloc & 0.5 Self ms
 
-Group check performance = ~74 FPS & ~12.3 Self MS 
+Group way:
+```csharp
+zombies = new List<GameObject>(zombiesGroup.GetAllMembers());
+```
+
+It cost me: 19.6 KB GC Alloc & 0 Self ms
+
+Almost nothing has changed, but let's look further.
+
+The same number of objects, but now our goal is to set ignite to all the characters who have a component "Ignitable". Imagine that we used the global ability on the entire map and got an array of all the characters that need to be set on ignite.
+
+Classic way:
+```csharp
+Collider2D[] colliders = Physics2D.OverlapCircleAll(cachedTransform, radius, layerMask);
+
+for (int i = 0; i < colliders.Length; i++)
+{
+	GameObject character = colliders[i].gameObject;
+
+	if (character.GetComponent<Ignitable>())
+	{
+		// Start ignite
+	}
+} 
+```
+It cost me: 1.4 MB GC Alloc & 22.38 Self ms
+
+Group way:
+```csharp
+Collider2D[] colliders = Physics2D.OverlapCircleAll(cachedTransform, radius, layerMask);
+
+for (int i = 0; i < colliders.Length; i++)
+{
+	GameObject character = colliders[i].gameObject;
+
+	if (ignitableGroup.HasMember(character))
+	{
+		if (target.GetComponent<Ignitable>() != null)
+		{
+			// Start ignite
+		}
+	}
+} 
+```
+
+It cost me: 0 KB GC Alloc & 1.8 Self ms
 
 ## Usage
 Throw scripts from this repository into your project
@@ -57,7 +104,7 @@ public class GiveItem : MonoBehaviour
 
 	private void Start()
 	{
-		goblins = goblinMerchants.GetAllMembers();
+		goblins = new List<GameObject>(goblinMerchants.GetAllMembers());
 		GiveItemToGoblinMerchants();
 	}
 
