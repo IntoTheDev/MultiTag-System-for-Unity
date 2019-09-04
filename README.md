@@ -53,7 +53,7 @@ for (int i = 0; i < colliders.Length; i++)
 
 	if (ignitableGroup.HasMember(character))
 	{
-		if (target.GetComponent<Ignitable>() != null)
+		if (character.GetComponent<Ignitable>() != null)
 		{
 			// Start ignite
 		}
