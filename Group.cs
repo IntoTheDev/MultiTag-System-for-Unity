@@ -5,12 +5,15 @@ using ToolBox.Attributes;
 [CreateAssetMenu(menuName = "ToolBox/Group")]
 public class Group : ScriptableObject
 {
+	public int MembersCount => membersCount;
+
 	// For returns 
 	private List<GameObject> listMembers = new List<GameObject>();
 
 	// For checking
 	private HashSet<GameObject> hashMebmers = new HashSet<GameObject>();
 
+	[HideInInspector] public bool isGroupEmpty = false;
 	[SerializeField, ReadOnly, BoxGroup("Debug")] private int membersCount = 0;
 
 	/// <summary>
@@ -24,6 +27,7 @@ public class Group : ScriptableObject
 			hashMebmers.Add(target);
 
 			membersCount++;
+			isGroupEmpty = false;
 		}
 	}
 
@@ -38,6 +42,9 @@ public class Group : ScriptableObject
 			hashMebmers.Remove(target);
 
 			membersCount--;
+
+			if (membersCount <= 0)
+				isGroupEmpty = true;
 		}
 	}
 
@@ -54,7 +61,7 @@ public class Group : ScriptableObject
 	/// </summary>
 	public GameObject GetRandomMember()
 	{
-		if (IsGroupEmpty())
+		if (isGroupEmpty)
 			return null;
 
 		int randomIndex = Random.Range(0, membersCount - 1);
@@ -66,7 +73,7 @@ public class Group : ScriptableObject
 	/// </summary>
 	public List<GameObject> GetRandomMembers(int count)
 	{
-		if (IsGroupEmpty())
+		if (isGroupEmpty)
 			return null;
 
 		List<GameObject> randomObjects = new List<GameObject>(count);
@@ -95,12 +102,10 @@ public class Group : ScriptableObject
 	/// </summary>
 	public List<GameObject> GetAllMembers()
 	{
-		if (IsGroupEmpty())
+		if (isGroupEmpty)
 			return null;
 
-		List<GameObject> allMembers = new List<GameObject>(listMembers);
-
-		return allMembers;
+		return listMembers;
 	}
 
 	/// <summary>
@@ -130,10 +135,5 @@ public class Group : ScriptableObject
 
 			return false;
 		}
-	}
-
-	private bool IsGroupEmpty()
-	{
-		return membersCount <= 0;
 	}
 }
