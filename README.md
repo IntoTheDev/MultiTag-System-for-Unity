@@ -34,10 +34,11 @@ Collider2D[] colliders = Physics2D.OverlapCircleAll(cachedTransform, radius, lay
 for (int i = 0; i < colliders.Length; i++)
 {
 	GameObject character = colliders[i].gameObject;
+	Ignitable ignitable = character.GetComponent<Ignitable>();
 
-	if (character.GetComponent<Ignitable>())
+	if (ignitable != null)
 	{
-		// Start ignite
+		ignitable.Ignite();
 	}
 } 
 ```
@@ -53,9 +54,11 @@ for (int i = 0; i < colliders.Length; i++)
 
 	if (ignitableGroup.HasMember(character))
 	{
-		if (character.GetComponent<Ignitable>() != null)
+		Ignitable ignitable = character.GetComponent<Ignitable>();
+	
+		if (ignitable != null)
 		{
-			// Start ignite
+			ignitable.Ignite();
 		}
 	}
 } 
