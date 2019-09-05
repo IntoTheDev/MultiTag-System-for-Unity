@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
 using ToolBox.Attributes;
 
@@ -7,13 +7,11 @@ public class Group : ScriptableObject
 {
 	public int MembersCount => membersCount;
 
-	// For returns 
-	private List<GameObject> listMembers = new List<GameObject>();
+	[HideInInspector] public bool IsGroupEmpty = false;
 
-	// For checking
+	private List<GameObject> listMembers = new List<GameObject>();
 	private HashSet<GameObject> hashMebmers = new HashSet<GameObject>();
 
-	[HideInInspector] public bool isGroupEmpty = false;
 	[SerializeField, ReadOnly, BoxGroup("Debug")] private int membersCount = 0;
 
 	/// <summary>
@@ -27,7 +25,7 @@ public class Group : ScriptableObject
 			hashMebmers.Add(target);
 
 			membersCount++;
-			isGroupEmpty = false;
+			IsGroupEmpty = false;
 		}
 	}
 
@@ -44,7 +42,7 @@ public class Group : ScriptableObject
 			membersCount--;
 
 			if (membersCount <= 0)
-				isGroupEmpty = true;
+				IsGroupEmpty = true;
 		}
 	}
 
@@ -61,7 +59,7 @@ public class Group : ScriptableObject
 	/// </summary>
 	public GameObject GetRandomMember()
 	{
-		if (isGroupEmpty)
+		if (IsGroupEmpty)
 			return null;
 
 		int randomIndex = Random.Range(0, membersCount - 1);
@@ -73,7 +71,7 @@ public class Group : ScriptableObject
 	/// </summary>
 	public List<GameObject> GetRandomMembers(int count)
 	{
-		if (isGroupEmpty)
+		if (IsGroupEmpty)
 			return null;
 
 		List<GameObject> randomObjects = new List<GameObject>(count);
@@ -102,7 +100,7 @@ public class Group : ScriptableObject
 	/// </summary>
 	public List<GameObject> GetAllMembers()
 	{
-		if (isGroupEmpty)
+		if (IsGroupEmpty)
 			return null;
 
 		return listMembers;
