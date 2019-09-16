@@ -5,15 +5,15 @@ using ToolBox.Attributes;
 [CreateAssetMenu(menuName = "ToolBox/Group")]
 public class Group : ScriptableObject
 {
+	[HideInInspector] public bool IsGroupEmpty = false;
+
 	public int MembersCount => membersCount;
 	public List<GameObject> GroupMembers => listMembers;
-
-	[HideInInspector] public bool IsGroupEmpty = false;
+	
+	[SerializeField, ReadOnly, BoxGroup("Debug")] private int membersCount = 0;
 
 	private List<GameObject> listMembers = new List<GameObject>();
 	private HashSet<GameObject> hashMebmers = new HashSet<GameObject>();
-
-	[SerializeField, ReadOnly, BoxGroup("Debug")] private int membersCount = 0;
 
 	[Button("Clear group")]
 	private void ClearGroup()
