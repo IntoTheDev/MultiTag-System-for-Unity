@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections.Generic;
 using ToolBox.Attributes;
 
@@ -6,6 +6,7 @@ using ToolBox.Attributes;
 public class Group : ScriptableObject
 {
 	public int MembersCount => membersCount;
+	public List<GameObject> GroupMembers => listMembers;
 
 	[HideInInspector] public bool IsGroupEmpty = false;
 
@@ -13,6 +14,14 @@ public class Group : ScriptableObject
 	private HashSet<GameObject> hashMebmers = new HashSet<GameObject>();
 
 	[SerializeField, ReadOnly, BoxGroup("Debug")] private int membersCount = 0;
+
+	[Button("Clear group")]
+	private void ClearGroup()
+	{
+		listMembers.Clear();
+		hashMebmers.Clear();
+		membersCount = 0;
+	}
 
 	/// <summary>
 	/// Adds a target to the group
@@ -25,6 +34,7 @@ public class Group : ScriptableObject
 			hashMebmers.Add(target);
 
 			membersCount++;
+
 			IsGroupEmpty = false;
 		}
 	}
