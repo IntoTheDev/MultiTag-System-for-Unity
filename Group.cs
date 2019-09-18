@@ -5,11 +5,10 @@ using ToolBox.Attributes;
 [CreateAssetMenu(menuName = "ToolBox/Group")]
 public class Group : ScriptableObject
 {
-	[HideInInspector] public bool IsGroupEmpty = false;
-
 	public int MembersCount => membersCount;
 	public List<GameObject> GroupMembers => listMembers;
-	
+	public bool IsGroupEmpty { get; private set; } = false;
+
 	[SerializeField, ReadOnly, BoxGroup("Debug")] private int membersCount = 0;
 
 	private List<GameObject> listMembers = new List<GameObject>();
@@ -59,10 +58,7 @@ public class Group : ScriptableObject
 	/// <summary>
 	/// Checks if the target is in a group
 	/// </summary>
-	public bool HasMember(GameObject target)
-	{
-		return hashMebmers.Contains(target);
-	}
+	public bool HasMember(GameObject target) => hashMebmers.Contains(target);
 
 	/// <summary>
 	/// Returns a random member of the group
@@ -106,20 +102,9 @@ public class Group : ScriptableObject
 	}
 
 	/// <summary>
-	/// Returns all group members
-	/// </summary>
-	public List<GameObject> GetAllMembers()
-	{
-		if (IsGroupEmpty)
-			return null;
-
-		return listMembers;
-	}
-
-	/// <summary>
 	/// Checks if there is a target in all or one of these groups
 	/// </summary>
-	public static bool IsTargetInGroups(Group[] groups, GameObject target, CheckType checkType)
+	public static bool IsTargetInGroups(GameObject target, Group[] groups, CheckType checkType)
 	{
 		int groupsCount = groups.Length;
 
