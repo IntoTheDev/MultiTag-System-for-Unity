@@ -23,7 +23,7 @@ Simply attach the "Member" script to the object you want to add to the desired g
 
 ### Examples
 
-#### Example of checking an entity for membership in one of the groups. (Like CompareTag, but 2 times faster, with more functionality and no need to work with strings)
+#### Example with check if the target is a group of enemies. (Like CompareTag, but much faster, with more functionality and no need to work with strings)
 
 ```csharp
 using UnityEngine;
@@ -38,6 +38,64 @@ public class GroupExample : MonoBehaviour
 		if (enemies.HasMember(target))
 		{
 			// Do something
+		}
+	}
+}
+```
+
+#### Check whether the target is in more than one group
+
+```csharp
+using UnityEngine;
+
+public class GroupExample : MonoBehaviour
+{
+	[SerializeField] private Group enemies = null;
+	[SerializeField] private Group bosses = null;
+
+	private Group[] allEnemyTypes = new Group[2];
+
+	[SerializeField] private GameObject target = null;
+
+	private void Start()
+	{
+		allEnemyTypes[0] = enemies;
+		allEnemyTypes[1] = bosses;
+	}
+
+	private void Update()
+	{
+		// Check whether the target is in groups of enemies and bosses
+		if (Group.IsTargetInGroups(target, allEnemyTypes, CheckType.AllGroups))
+		{
+			// Do something
+		}
+
+		// Check whether the target is in at least one of the groups
+		if (Group.IsTargetInGroups(target, allEnemyTypes, CheckType.OneGroup))
+		{
+			// Do something
+		}
+	}
+}
+```
+
+#### Iterate through all group members
+
+```csharp
+using UnityEngine;
+
+public class GroupExample : MonoBehaviour
+{
+	[SerializeField] private Group NPCs = null;
+
+	private void Update()
+	{
+		int NPCsCount = NPCs.MembersCount;
+
+		for (int i = 0; i < NPCsCount; i++)
+		{
+			NPCs.GroupMembers[i].DoSomething();
 		}
 	}
 }
