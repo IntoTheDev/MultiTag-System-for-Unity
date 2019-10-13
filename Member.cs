@@ -2,76 +2,80 @@
 using ToolBox.Attributes;
 using UnityEngine;
 
-[DisallowMultipleComponent]
-public class Member : MonoBehaviour
+namespace ToolBox.Groups
 {
-	[SerializeField, BoxGroup("My Groups")] private List<Group> groups = new List<Group>();
-	[SerializeField, ReadOnly, BoxGroup("Debug")] private int groupsCount;
-
-	private GameObject cachedGameObject;
-
-	private void Awake()
+	[DisallowMultipleComponent]
+	public class Member : MonoBehaviour
 	{
-		cachedGameObject = gameObject;
-		groupsCount = groups.Count;
+		[SerializeField, BoxGroup("My Groups")] private List<Group> groups = new List<Group>();
+		[SerializeField, ReadOnly, BoxGroup("Debug")] private int groupsCount;
 
-		if (groupsCount <= 0)
+		private GameObject cachedGameObject;
+
+		private void Awake()
 		{
-			Debug.LogError(name + " have 0 groups!");
-			Destroy(this);
-		}
-	}
-
-	private void OnValidate()
-	{
-		if (groups != null && groups.Count > 0)
+			cachedGameObject = gameObject;
 			groupsCount = groups.Count;
 
-		cachedGameObject = gameObject;
-	}
-
-	private void OnEnable()
-	{
-		for (int i = 0; i < groupsCount; i++)
-			groups[i].AddMember(cachedGameObject);
-
-		groupsCount = groups.Count;
-	}
-
-	private void OnDisable()
-	{
-		for (int i = 0; i < groupsCount; i++)
-			groups[i].RemoveMember(cachedGameObject);
-
-		groupsCount = 0;
-	}
-
-	public void AddGroup(Group group)
-	{
-		if (!groups.Contains(group))
-		{
-			groups.Add(group);
-			group.AddMember(cachedGameObject);
-			groupsCount++;
+			if (groupsCount <= 0)
+			{
+				Debug.LogError(name + " have 0 groups!");
+				Destroy(this);
+			}
 		}
-	}
 
-	public void RemoveGroup(Group group)
-	{
-		if (groups.Contains(group))
+		private void OnValidate()
 		{
-			groups.Remove(group);
-			group.RemoveMember(cachedGameObject);
-			groupsCount--;
+			if (groups != null && groups.Count > 0)
+				groupsCount = groups.Count;
+
+			cachedGameObject = gameObject;
 		}
-	}
 
-	public void ClearGroups()
-	{
-		for (int i = 0; i < groupsCount; i++)
-			RemoveGroup(groups[i]);
+		private void OnEnable()
+		{
+			for (int i = 0; i < groupsCount; i++)
+				groups[i].AddMember(cachedGameObject);
 
-		groups.Clear();
-		groupsCount = 0;
+			groupsCount = groups.Count;
+		}
+
+		private void OnDisable()
+		{
+			for (int i = 0; i < groupsCount; i++)
+				groups[i].RemoveMember(cachedGameObject);
+
+			groupsCount = 0;
+		}
+
+		public void AddGroup(Group group)
+		{
+			if (!groups.Contains(group))
+			{
+				groups.Add(group);
+				group.AddMember(cachedGameObject);
+				groupsCount++;
+			}
+		}
+
+		public void RemoveGroup(Group group)
+		{
+			if (groups.Contains(group))
+			{
+				groups.Remove(group);
+				group.RemoveMember(cachedGameObject);
+				groupsCount--;
+			}
+		}
+
+		public void ClearGroups()
+		{
+			for (int i = 0; i < groupsCount; i++)
+				RemoveGroup(groups[i]);
+
+			groups.Clear();
+			groupsCount = 0;
+		}
 	}
 }
+

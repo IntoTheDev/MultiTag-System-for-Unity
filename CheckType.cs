@@ -1,5 +1,8 @@
-﻿public enum CheckType
+﻿namespace ToolBox.Groups
 {
-	AllGroups,
-	OneGroup
+	public enum CheckType
+	{
+		AllGroups,
+		OneGroup
+	}
 }
