@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c372fcbe81c655f42b02d97c6a9ef2e0, type: 3}
-  m_Name: Actors
+  m_Name: Entities
   m_EditorClassIdentifier: 
   membersCount: 0
