@@ -8,7 +8,7 @@ namespace ToolBox.Groups
 	public class Group : ScriptableObject
 	{
 		public int MembersCount => membersCount;
-		public List<GameObject> GroupMembers => listMembers;
+		public IReadOnlyList<GameObject> Members => listMembers;
 		public bool IsGroupEmpty { get; private set; } = false;
 
 		[SerializeField, ReadOnly, BoxGroup("Debug")] private int membersCount = 0;
