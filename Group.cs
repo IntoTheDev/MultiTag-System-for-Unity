@@ -9,7 +9,7 @@ namespace ToolBox.Groups
 	{
 		public int MembersCount => membersCount;
 		public IReadOnlyList<GameObject> Members => listMembers;
-		public bool IsGroupEmpty { get; private set; } = false;
+		public bool IsEmpty { get; private set; } = false;
 
 		[SerializeField, ReadOnly, BoxGroup("Debug")] private int membersCount = 0;
 
@@ -27,47 +27,47 @@ namespace ToolBox.Groups
 		/// <summary>
 		/// Adds a target to the group
 		/// </summary>
-		public void AddMember(GameObject target)
+		public void AddMember(GameObject newMember)
 		{
-			if (!hashMebmers.Contains(target))
+			if (!hashMebmers.Contains(newMember))
 			{
-				listMembers.Add(target);
-				hashMebmers.Add(target);
+				listMembers.Add(newMember);
+				hashMebmers.Add(newMember);
 
 				membersCount++;
 
-				IsGroupEmpty = false;
+				IsEmpty = false;
 			}
 		}
 
 		/// <summary>
 		/// Removes a target from the group
 		/// </summary>
-		public void RemoveMember(GameObject target)
+		public void RemoveMember(GameObject member)
 		{
-			if (hashMebmers.Contains(target))
+			if (hashMebmers.Contains(member))
 			{
-				listMembers.Remove(target);
-				hashMebmers.Remove(target);
+				listMembers.Remove(member);
+				hashMebmers.Remove(member);
 
 				membersCount--;
 
 				if (membersCount <= 0)
-					IsGroupEmpty = true;
+					IsEmpty = true;
 			}
 		}
 
 		/// <summary>
 		/// Checks if the target is in a group
 		/// </summary>
-		public bool HasMember(GameObject target) => hashMebmers.Contains(target);
+		public bool HasMember(GameObject entity) => hashMebmers.Contains(entity);
 
 		/// <summary>
 		/// Returns a random member of the group
 		/// </summary>
 		public GameObject GetRandomMember()
 		{
-			if (IsGroupEmpty)
+			if (IsEmpty)
 				return null;
 
 			int randomIndex = Random.Range(0, membersCount - 1);
@@ -79,7 +79,7 @@ namespace ToolBox.Groups
 		/// </summary>
 		public List<GameObject> GetRandomMembers(int count)
 		{
-			if (IsGroupEmpty)
+			if (IsEmpty)
 				return null;
 
 			List<GameObject> randomObjects = new List<GameObject>(count);
@@ -106,7 +106,7 @@ namespace ToolBox.Groups
 		/// <summary>
 		/// Checks if there is a target in all or one of these groups
 		/// </summary>
-		public static bool IsTargetInGroups(GameObject target, Group[] groups, CheckType checkType)
+		public static bool IsEntityInGroups(GameObject target, Group[] groups, CheckType checkType)
 		{
 			int groupsCount = groups.Length;
 
