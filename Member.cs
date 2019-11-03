@@ -6,7 +6,7 @@ namespace ToolBox.Groups
 	[DisallowMultipleComponent]
 	public class Member : MonoBehaviour
 	{
-		[SerializeField, BoxGroup("My Groups"), ReorderableList] private Group[] groups = null;
+		[SerializeField, ReorderableList, BoxGroup("My Groups")] private Group[] groups = null;
 		[SerializeField, ReadOnly, BoxGroup("Debug")] private int groupsCount = 0;
 
 		private GameObject cachedGameObject = null;
