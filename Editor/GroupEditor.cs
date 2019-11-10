@@ -1,8 +1,8 @@
-﻿using UnityEngine;
-using ToolBox.Groups;
-using UnityEditor;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using ToolBox.Groups;
+using UnityEditor;
+using UnityEngine;
 
 public class GroupEditor : EditorWindow
 {
