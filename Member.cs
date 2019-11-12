@@ -1,4 +1,6 @@
-﻿using ToolBox.Attributes;
+﻿using System;
+using System.Collections.ObjectModel;
+using ToolBox.Attributes;
 using UnityEngine;
 
 namespace ToolBox.Groups
@@ -34,6 +36,13 @@ namespace ToolBox.Groups
 			for (int i = 0; i < groupsCount; i++)
 				groups[i].RemoveMember(cachedGameObject);
 		}
+#if UNITY_EDITOR
+		public ReadOnlyCollection<Group> GetGroups()
+		{
+			ReadOnlyCollection<Group> groups = Array.AsReadOnly<Group>(this.groups);
+			return groups;
+		}
+#endif
 	}
 }
 
