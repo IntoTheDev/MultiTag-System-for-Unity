@@ -1,18 +1,17 @@
 ﻿using Sirenix.OdinInspector;
-using Sirenix.Serialization;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace ToolBox.Groups
 {
 	[CreateAssetMenu(menuName = "ToolBox/Group")]
-	public class Group : SerializedScriptableObject
+	public class Group : ScriptableObject
 	{
 		public int MembersCount => membersCount;
 		public IReadOnlyList<GameObject> Members => listMembers;
 		public bool IsEmpty { get; private set; } = false;
 
-		[OdinSerialize, ReadOnly, ListDrawerSettings(NumberOfItemsPerPage = 25)] private List<GameObject> listMembers = new List<GameObject>();
+		[SerializeField, ReadOnly, ListDrawerSettings(NumberOfItemsPerPage = 25)] private List<GameObject> listMembers = new List<GameObject>();
 
 		private HashSet<GameObject> hashMebmers = new HashSet<GameObject>();
 
