@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Sirenix.OdinInspector;
+using System;
 using System.Collections.ObjectModel;
-using ToolBox.Attributes;
 using UnityEngine;
 
 namespace ToolBox.Groups
@@ -8,8 +8,8 @@ namespace ToolBox.Groups
 	[DisallowMultipleComponent]
 	public class Member : MonoBehaviour
 	{
-		[SerializeField, ReorderableList, BoxGroup("My Groups")] private Group[] groups = null;
-		[SerializeField, ReadOnly, BoxGroup("Debug")] private int groupsCount = 0;
+		[SerializeField, FoldoutGroup("Data"), AssetSelector, ListDrawerSettings(Expanded = true)] private Group[] groups = null;
+		[SerializeField, ReadOnly, FoldoutGroup("Debug")] private int groupsCount = 0;
 
 		private GameObject cachedGameObject = null;
 

@@ -1,20 +1,22 @@
-﻿using System.Collections.Generic;
-using ToolBox.Attributes;
+﻿using Sirenix.OdinInspector;
+using Sirenix.Serialization;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ToolBox.Groups
 {
 	[CreateAssetMenu(menuName = "ToolBox/Group")]
-	public class Group : ScriptableObject
+	public class Group : SerializedScriptableObject
 	{
 		public int MembersCount => membersCount;
 		public IReadOnlyList<GameObject> Members => listMembers;
 		public bool IsEmpty { get; private set; } = false;
 
-		[SerializeField, ReadOnly, BoxGroup("Debug")] private int membersCount = 0;
+		[OdinSerialize, ReadOnly, ListDrawerSettings(NumberOfItemsPerPage = 25)] private List<GameObject> listMembers = new List<GameObject>();
 
-		private List<GameObject> listMembers = new List<GameObject>();
 		private HashSet<GameObject> hashMebmers = new HashSet<GameObject>();
+
+		private int membersCount = 0;
 
 		[Button("Clear group")]
 		private void ClearGroup()
