@@ -1,17 +1,24 @@
 ﻿using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace ToolBox.Groups
 {
 	[CreateAssetMenu(menuName = "ToolBox/Group")]
 	public class Group : ScriptableObject
 	{
+		public UnityAction<GameObject> OnMemberAdd = null;
+		public UnityAction<GameObject> OnMemberRemove = null;
+
 		public int MembersCount => membersCount;
 		public IReadOnlyList<GameObject> Members => listMembers;
 		public bool IsEmpty { get; private set; } = false;
 
-		[SerializeField, ReadOnly, ListDrawerSettings(NumberOfItemsPerPage = 25)] private List<GameObject> listMembers = new List<GameObject>();
+		[SerializeField,
+			ReadOnly,
+			ListDrawerSettings(NumberOfItemsPerPage = 25,
+			Expanded = true)] private List<GameObject> listMembers = new List<GameObject>();
 
 		private HashSet<GameObject> hashMebmers = new HashSet<GameObject>();
 
@@ -38,6 +45,8 @@ namespace ToolBox.Groups
 				membersCount++;
 
 				IsEmpty = false;
+
+				OnMemberAdd?.Invoke(newMember);
 			}
 		}
 
@@ -55,13 +64,16 @@ namespace ToolBox.Groups
 
 				if (membersCount <= 0)
 					IsEmpty = true;
+
+				OnMemberRemove?.Invoke(member);
 			}
 		}
 
 		/// <summary>
 		/// Checks if the target is in a group
 		/// </summary>
-		public bool HasMember(GameObject entity) => hashMebmers.Contains(entity);
+		public bool HasMember(GameObject entity) =>
+			hashMebmers.Contains(entity);
 
 		/// <summary>
 		/// Returns a random member of the group
