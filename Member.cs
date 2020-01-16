@@ -1,4 +1,5 @@
 ﻿using Sirenix.OdinInspector;
+using Sirenix.Serialization;
 using System;
 using System.Collections.ObjectModel;
 using UnityEngine;
@@ -6,40 +7,37 @@ using UnityEngine;
 namespace ToolBox.Groups
 {
 	[DisallowMultipleComponent]
-	public class Member : MonoBehaviour
+	public class Member : SerializedMonoBehaviour
 	{
-		[SerializeField, FoldoutGroup("Data"), AssetSelector, ListDrawerSettings(Expanded = true)] private Group[] groups = null;
-		[SerializeField, ReadOnly, FoldoutGroup("Debug")] private int groupsCount = 0;
+		[OdinSerialize, TabGroup("Processor")] private MemberProcessor memberProcessor = null;
+		[SerializeField, TabGroup("Data"), AssetSelector, ListDrawerSettings(Expanded = true)] private Group[] groups = null;
 
 		private GameObject cachedGameObject = null;
 
 		private void Awake()
 		{
 			cachedGameObject = gameObject;
-			groupsCount = groups.Length;
 
-			if (groupsCount <= 0)
+			if (groups.Length <= 0 || memberProcessor == null)
 			{
-				Debug.LogError("I have 0 groups", cachedGameObject);
+				Debug.LogError("Member Error", cachedGameObject);
 				enabled = false;
+				return;
 			}
+
+			memberProcessor.Initialize(groups, this);
 		}
 
-		private void OnEnable()
-		{
-			for (int i = 0; i < groupsCount; i++)
-				groups[i].AddMember(cachedGameObject);
-		}
+		private void OnEnable() =>
+			memberProcessor.OnEnable();
 
-		private void OnDisable()
-		{
-			for (int i = 0; i < groupsCount; i++)
-				groups[i].RemoveMember(cachedGameObject);
-		}
+		private void OnDisable() =>
+			memberProcessor.OnDisable();
+
 #if UNITY_EDITOR
 		public ReadOnlyCollection<Group> GetGroups()
 		{
-			ReadOnlyCollection<Group> groups = Array.AsReadOnly<Group>(this.groups);
+			ReadOnlyCollection<Group> groups = Array.AsReadOnly(this.groups);
 			return groups;
 		}
 #endif

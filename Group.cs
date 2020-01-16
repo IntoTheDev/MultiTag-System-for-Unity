@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 namespace ToolBox.Groups
 {
-	[CreateAssetMenu(menuName = "ToolBox/Group")]
+	[CreateAssetMenu(menuName = "ToolBox/Groups/Group")]
 	public class Group : ScriptableObject
 	{
 		public UnityAction<GameObject> OnMemberAdd = null;
