@@ -8,8 +8,8 @@ namespace ToolBox.Groups
 	[CreateAssetMenu(menuName = "ToolBox/Groups/Group")]
 	public class Group : ScriptableObject
 	{
-		public UnityAction<GameObject> OnMemberAdd = null;
-		public UnityAction<GameObject> OnMemberRemove = null;
+		public event UnityAction<GameObject> OnMemberAdd = null;
+		public event UnityAction<GameObject> OnMemberRemove = null;
 
 		public int MembersCount => membersCount;
 		public IReadOnlyList<GameObject> Members => listMembers;
