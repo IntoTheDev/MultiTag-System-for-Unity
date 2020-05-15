@@ -1,4 +1,5 @@
 ﻿using Sirenix.OdinInspector;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -14,15 +15,14 @@ namespace ToolBox.Groups
 		public int MembersCount => membersCount;
 		public IReadOnlyList<GameObject> Members => listMembers;
 		public bool IsEmpty { get; private set; } = false;
+		public GameObject Member => listMembers[0];
 
-		[SerializeField,
+		[NonSerialized,
 			ReadOnly,
 			ListDrawerSettings(NumberOfItemsPerPage = 25,
-			Expanded = true)] private List<GameObject> listMembers = new List<GameObject>();
-
-		private HashSet<GameObject> hashMebmers = new HashSet<GameObject>();
-
-		private int membersCount = 0;
+			Expanded = true), ShowInInspector] private List<GameObject> listMembers = new List<GameObject>();
+		[NonSerialized] private HashSet<GameObject> hashMebmers = new HashSet<GameObject>();
+		[NonSerialized] private int membersCount = 0;
 
 		[Button("Clear group")]
 		private void ClearGroup()
@@ -83,7 +83,7 @@ namespace ToolBox.Groups
 			if (IsEmpty)
 				return null;
 
-			int randomIndex = Random.Range(0, membersCount - 1);
+			int randomIndex = UnityEngine.Random.Range(0, membersCount - 1);
 			return listMembers[randomIndex];
 		}
 
@@ -102,7 +102,7 @@ namespace ToolBox.Groups
 			{
 				for (int j = 0; j < 10000; j++)
 				{
-					int newRandomIndex = Random.Range(0, membersCount - 1);
+					int newRandomIndex = UnityEngine.Random.Range(0, membersCount - 1);
 
 					if (newRandomIndex != randomIndex)
 					{

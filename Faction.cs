@@ -11,5 +11,8 @@ namespace ToolBox.Groups
 		[SerializeField,
 			ListDrawerSettings(NumberOfItemsPerPage = 10, Expanded = true),
 			AssetSelector] private Group[] groups = null;
+
+		public bool IsEntityInFaction(GameObject entity, CheckType checkType) =>
+			Group.IsEntityInGroups(entity, groups, checkType);
 	}
 }
