@@ -6,3 +6,10 @@ Features:
 - Runtime Tag add/remove
 - Work with SO Assets instead of strings
 - Works few times faster than Unity Tag Comparer
+
+```csharp
+public class Actor
+{
+
+}
+```
