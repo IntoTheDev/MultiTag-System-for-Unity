@@ -6,23 +6,23 @@ namespace ToolBox.Tags
 	[DisallowMultipleComponent]
 	public sealed class Taggable : MonoBehaviour
 	{
-		[SerializeField, Required] private Tag[] tags = default;
+		[SerializeField, Required] private Tag[] _tags = default;
 
-		private GameObject cachedObject = null;
+		private GameObject _gameObject = null;
 
 		private void Awake() =>
-			cachedObject = gameObject;
+			_gameObject = gameObject;
 
 		private void OnEnable()
 		{
-			for (int i = 0; i < tags.Length; i++)
-				tags[i].Add(cachedObject);
+			for (int i = 0; i < _tags.Length; i++)
+				_tags[i].Add(_gameObject);
 		}
 
 		private void OnDisable()
 		{
-			for (int i = 0; i < tags.Length; i++)
-				tags[i].Remove(cachedObject);
+			for (int i = 0; i < _tags.Length; i++)
+				_tags[i].Remove(_gameObject);
 		}
 	}
 }

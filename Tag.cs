@@ -7,16 +7,16 @@ namespace ToolBox.Tags
 	[CreateAssetMenu(menuName = "ToolBox/Tag"), AssetSelector]
 	public sealed class Tag : ScriptableObject
 	{
-		[ShowInInspector, ReadOnly] private HashSet<GameObject> entities = new HashSet<GameObject>();
+		[ShowInInspector, ReadOnly] private HashSet<GameObject> _entities = new HashSet<GameObject>();
 
 		public void Add(GameObject entity) =>
-			entities.Add(entity);
+			_entities.Add(entity);
 
 		public void Remove(GameObject entity) =>
-			entities.Remove(entity);
+			_entities.Remove(entity);
 
 		public bool HasEntity(GameObject entity) =>
-			entities.Contains(entity);
+			_entities.Contains(entity);
 	}
 }
 
