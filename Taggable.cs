@@ -8,21 +8,21 @@ namespace ToolBox.Tags
 	{
 		[SerializeField, Required] private Tag[] _tags = default;
 
-		private GameObject _gameObject = null;
+		private int _hash = 0;
 
 		private void Awake() =>
-			_gameObject = gameObject;
+			_hash = gameObject.GetHashCode();
 
 		private void OnEnable()
 		{
 			for (int i = 0; i < _tags.Length; i++)
-				_tags[i].Add(_gameObject);
+				_tags[i].Add(_hash);
 		}
 
 		private void OnDisable()
 		{
 			for (int i = 0; i < _tags.Length; i++)
-				_tags[i].Remove(_gameObject);
+				_tags[i].Remove(_hash);
 		}
 	}
 }
