@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ToolBox.Tags
 {
-	[CreateAssetMenu(menuName = "ToolBox/Tag"), AssetSelector]
+	[CreateAssetMenu(menuName = "ToolBox/Tagging/Tag"), AssetSelector]
 	public sealed class Tag : ScriptableObject
 	{
 		[ShowInInspector, ReadOnly] private HashSet<int> _entities = new HashSet<int>();

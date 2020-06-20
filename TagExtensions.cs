@@ -54,6 +54,9 @@ namespace ToolBox.Tags
 				return false;
 			}
 		}
+
+		public static bool HasTags(this GameObject entity, TagsContainer tagsContainer, bool allRequired) =>
+			tagsContainer.HasEntity(entity, allRequired);
 	}
 }
 
