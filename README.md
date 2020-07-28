@@ -16,29 +16,24 @@ This package allows you to Tag your Game Objects with ScriptableObjects
 ```csharp
 public class Test : MonoBehaviour
 {
-		[SerializeField] private GameObject _enemy = null;
-		[SerializeField] private Tag _zombieTag = null;
-		[SerializeField] private TagsContainter = _allEnemiesTags = null;
-  
-		private void Awake()
+	[SerializeField] private GameObject _enemy = null;
+	[SerializeField] private Tag _zombieTag = null;
+	[SerializeField] private TagsContainer = _allEnemiesTags = null;
+ 
+	private void Awake()
+	{
+		// Check for Tag
+		if (_enemy.HasTag(_zombieTag))
 		{
-			// Check for Tag
-			if (_enemy.HasTag(_zombieTag))
-			{
-
-			}
-
-			// Check for Multiple Tags
-			if (_enemy.HasTags(_allEnemiesTags, allRequired: false))
-			{
-
-			}
-
-			// Adding Tag
-			_enemy.AddTag(_zombieTag);
-
-			// Removing Tag
-			_enemy.RemoveTag(_zombieTag);
 		}
+		// Check for Multiple Tags
+		if (_enemy.HasTags(_allEnemiesTags, allRequired: false))
+		{
+		}
+		// Adding Tag
+		_enemy.AddTag(_zombieTag);
+		// Removing Tag
+		_enemy.RemoveTag(_zombieTag);
+	}
 }
 ```
