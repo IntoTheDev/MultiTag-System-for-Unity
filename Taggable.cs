@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ToolBox.Tags
 {
-	[DisallowMultipleComponent]
+	[DisallowMultipleComponent, DefaultExecutionOrder(-95)]
 	public sealed class Taggable : MonoBehaviour
 	{
 		[SerializeField, Required] private Tag[] _tags = default;
