@@ -6,3 +6,8 @@ This package allows you to Tag your Game Objects with ScriptableObjects
 - Runtime Tag add/remove
 - Work with SO Assets instead of strings
 - Works few times faster than Unity Tag Comparer
+
+## Example:
+
+Adding Tags in Editor
+
