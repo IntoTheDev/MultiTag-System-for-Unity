@@ -25,13 +25,18 @@ public class Test : MonoBehaviour
 		// Check for Tag
 		if (_enemy.HasTag(_zombieTag))
 		{
+		
 		}
+		
 		// Check for Multiple Tags
 		if (_enemy.HasTags(_allEnemiesTags, allRequired: false))
 		{
+		
 		}
+		
 		// Adding Tag
 		_enemy.AddTag(_zombieTag);
+		
 		// Removing Tag
 		_enemy.RemoveTag(_zombieTag);
 	}
