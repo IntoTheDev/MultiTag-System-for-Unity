@@ -11,4 +11,4 @@ This package allows you to Tag your Game Objects with ScriptableObjects
 
 Adding Tags in Editor
 
-![alt text](http://url/to/img.png)
+![](https://imgur.com/kuz5yw9.png)
