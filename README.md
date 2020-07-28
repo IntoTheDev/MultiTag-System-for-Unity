@@ -18,7 +18,7 @@ public class Test : MonoBehaviour
 {
 	[SerializeField] private GameObject _enemy = null;
 	[SerializeField] private Tag _zombieTag = null;
-	[SerializeField] private TagsContainer = _allEnemiesTags = null;
+	[SerializeField] private TagsContainer _allEnemiesTags = null;
  
 	private void Awake()
 	{
