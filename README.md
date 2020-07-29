@@ -1,6 +1,6 @@
 # MultiTag System for Unity
 This package allows you to Tag your Game Objects with ScriptableObjects.
-Requires Odin Inspector for some Attributes but you can just delete them
+Requires Odin Inspector for some Attributes but they are unnecessary so you can just delete them
 
 
 ## Features:
