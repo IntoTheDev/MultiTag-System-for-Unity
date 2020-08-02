@@ -1,13 +1,12 @@
-﻿using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace ToolBox.Tags
 {
-	[CreateAssetMenu(menuName = "ToolBox/Tagging/Tag"), AssetSelector, Required]
+	[CreateAssetMenu(menuName = "ToolBox/Tagging/Tag")]
 	public sealed class Tag : ScriptableObject
 	{
-		[ShowInInspector, ReadOnly] private HashSet<int> _entities = new HashSet<int>();
+		private HashSet<int> _entities = new HashSet<int>();
 
 		public void Add(int entity) =>
 			_entities.Add(entity);
