@@ -49,6 +49,11 @@ public class Test : MonoBehaviour
 </p>
 </details>
 
+### Tags Container Usage:
+Tags Container allows you to group tags in a single asset, which allows you to check a single object for multiple tags at once. In my games, I use containers most often for a system of relationships between entities.
+
+![](https://imgur.com/XTM5YOU.png)
+
 
 ### Performance Test:
 <details><summary>Code</summary>
