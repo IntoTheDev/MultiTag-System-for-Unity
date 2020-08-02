@@ -87,7 +87,19 @@ namespace ToolBox.Tags
 				_all = Resources.FindObjectsOfTypeAll<Tag>();
 
 			if (_tags == null)
+			{
 				_tags = new Tag[0];
+			}
+			else
+			{
+				for (int i = _tags.Length - 1; i >= 0; i--)
+				{
+					var tag = _tags[i];
+
+					if (tag == null)
+						ArrayUtility.RemoveAt(ref _tags, i);
+				}
+			}
 
 			if (_hash == 0)
 				_hash = gameObject.GetHashCode();
