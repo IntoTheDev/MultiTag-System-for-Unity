@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace ToolBox.Tags
 {
-	[DisallowMultipleComponent]
+	[DisallowMultipleComponent, DefaultExecutionOrder(-150)]
 	public sealed class Taggable : MonoBehaviour
 	{
 		[SerializeField, Required, AssetList] private Tag[] _tags = default;
@@ -24,6 +24,9 @@ namespace ToolBox.Tags
 #endif
 
 			_hash = gameObject.GetHashCode();
+			
+			for (int i = 0; i < _tags.Length; i++)
+				_tags[i].Add(_hash);
 		}
 
 		private void OnEnable()
