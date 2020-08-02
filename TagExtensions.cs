@@ -14,7 +14,7 @@ namespace ToolBox.Tags
 			if (taggable == null)
 				taggable = entity.AddComponent<Taggable>();
 
-			taggable.Add(tag);
+			taggable.AddTagInEditor(tag);
 #endif
 		}
 
@@ -28,7 +28,7 @@ namespace ToolBox.Tags
 			if (taggable == null)
 				taggable = entity.AddComponent<Taggable>();
 
-			taggable.Remove(tag);
+			taggable.RemoveTagInEditor(tag);
 #endif
 		}
 
@@ -50,7 +50,7 @@ namespace ToolBox.Tags
 				var tag = tags[i];
 				tag.Add(hash);
 #if UNITY_EDITOR
-				taggable.Add(tag);
+				taggable.AddTagInEditor(tag);
 #endif
 			}
 		}
@@ -70,7 +70,7 @@ namespace ToolBox.Tags
 				var tag = tags[i];
 				tag.Remove(hash);
 #if UNITY_EDITOR
-				taggable.Remove(tag);
+				taggable.RemoveTagInEditor(tag);
 #endif
 			}
 		}

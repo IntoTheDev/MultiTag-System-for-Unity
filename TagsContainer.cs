@@ -1,9 +1,14 @@
-﻿using Sirenix.OdinInspector;
+﻿#if ODIN_INSPECTOR
+using Sirenix.OdinInspector;
+#endif
 using UnityEngine;
 
 namespace ToolBox.Tags
 {
-	[CreateAssetMenu(menuName = "ToolBox/Tagging/Tags Container"), AssetSelector]
+	[CreateAssetMenu(menuName = "ToolBox/MultiTags/Tags Container")]
+#if ODIN_INSPECTOR
+	[AssetSelector, Required]
+#endif
 	public sealed class TagsContainer : ScriptableObject
 	{
 		[SerializeField] private Tag[] _tags = null;

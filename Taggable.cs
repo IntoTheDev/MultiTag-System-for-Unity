@@ -1,3 +1,6 @@
+﻿#if ODIN_INSPECTOR
+using Sirenix.OdinInspector;
+#endif
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -5,63 +8,66 @@ using UnityEngine;
 
 namespace ToolBox.Tags
 {
-	[DisallowMultipleComponent, DefaultExecutionOrder(-150)]
+	[DisallowMultipleComponent, DefaultExecutionOrder(-9000), ExecuteInEditMode]
 	public sealed class Taggable : MonoBehaviour
 	{
+#if ODIN_INSPECTOR
+		[Required, AssetList]
+#endif
 		[SerializeField] private Tag[] _tags = default;
 
-		private Tag[] _all = null;
+		private static Tag[] _all = null;
 		private int _hash = 0;
 
 		private void Awake()
 		{
 #if UNITY_EDITOR
-			_all = Resources.FindObjectsOfTypeAll<Tag>();
-
-			if (_tags == null)
-				_tags = new Tag[0];
+			SetupEditorData();
 #endif
 
 			_hash = gameObject.GetHashCode();
-			
-			for (int i = 0; i < _tags.Length; i++)
-				_tags[i].Add(_hash);
+			AddAll();
 		}
 
-		private void OnEnable()
+		private void OnDestroy() =>
+			RemoveAll();
+
+		private void AddAll()
 		{
 			for (int i = 0; i < _tags.Length; i++)
 				_tags[i].Add(_hash);
 		}
 
-		private void OnDisable()
+		private void RemoveAll()
 		{
 			for (int i = 0; i < _tags.Length; i++)
 				_tags[i].Remove(_hash);
 		}
 
 #if UNITY_EDITOR
-		public void Add(Tag tag)
+		public void AddTagInEditor(Tag tag)
 		{
 			if (!ArrayUtility.Contains(_tags, tag))
 				ArrayUtility.Add(ref _tags, tag);
 		}
 
-		public void Remove(Tag tag)
+		public void RemoveTagInEditor(Tag tag)
 		{
 			if (ArrayUtility.Contains(_tags, tag))
 				ArrayUtility.Remove(ref _tags, tag);
 		}
 
+		// Handle Inspector Changes
 		private void OnValidate()
 		{
-			if (!Application.isPlaying || _all == null)
-				return;
-
+			SetupEditorData();
 			var obj = gameObject;
+			AddAll();
 
-			foreach (var tag in _all)
+			for (int i = 0; i < _all.Length; i++)
 			{
+				var tag = _all[i];
+
 				if (ArrayUtility.Contains(_tags, tag))
 				{
 					if (!obj.HasTag(tag))
@@ -73,6 +79,18 @@ namespace ToolBox.Tags
 						obj.RemoveTag(tag);
 				}
 			}
+		}
+
+		private void SetupEditorData()
+		{
+			if (_all == null)
+				_all = Resources.FindObjectsOfTypeAll<Tag>();
+
+			if (_tags == null)
+				_tags = new Tag[0];
+
+			if (_hash == 0)
+				_hash = gameObject.GetHashCode();
 		}
 #endif
 	}
