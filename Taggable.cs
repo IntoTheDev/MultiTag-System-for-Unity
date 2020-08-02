@@ -1,4 +1,3 @@
-﻿using Sirenix.OdinInspector;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -9,7 +8,7 @@ namespace ToolBox.Tags
 	[DisallowMultipleComponent, DefaultExecutionOrder(-150)]
 	public sealed class Taggable : MonoBehaviour
 	{
-		[SerializeField, Required, AssetList] private Tag[] _tags = default;
+		[SerializeField] private Tag[] _tags = default;
 
 		private Tag[] _all = null;
 		private int _hash = 0;
