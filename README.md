@@ -9,7 +9,7 @@ This package allows you to Tag your Game Objects with ScriptableObjects.
 
 ## Examples:
 
-### Adding Tags in Editor:
+### Change Tags in Editor:
 ![](https://imgur.com/EPxkbza.png)
 
 ### Runtime Operations:
