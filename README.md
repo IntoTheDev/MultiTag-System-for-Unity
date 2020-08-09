@@ -62,7 +62,6 @@ Tags Container allows you to group tags in a single asset, which allows you to c
 ```csharp
 using Sirenix.OdinInspector;
 using System.Diagnostics;
-using ToolBox.Pools;
 using ToolBox.Tags;
 using UnityEngine;
 
@@ -75,56 +74,36 @@ namespace ToolBox.Test
 		[SerializeField] private string _unityTag = null;
 		[SerializeField] private GameObject _object = null;
 
-		[SerializeField, ReadOnly] private float _myMS = 0;
-		[SerializeField, ReadOnly] private float _unityMS = 0;
-
-		[SerializeField, ReadOnly] private bool _hasMyTag = false;
-		[SerializeField, ReadOnly] private bool _hasUnityTag = false;
-
-		private const int ITERATIONS = 10;
+		private const int ITERATIONS = 100000;
 
 		[Button]
 		private void MyTagTest()
 		{
-			_myMS = 0f;
+			Stopwatch stopwatch = new Stopwatch();
+			stopwatch.Start();
 
-			for (int i = 0; i < ITERATIONS; i++)
+			for (int j = 0; j < ITERATIONS; j++)
 			{
-				Stopwatch stopwatch = new Stopwatch();
-				stopwatch.Start();
-
-				for (int j = 0; j < 100000; j++)
-				{
-					_hasMyTag = _object.HasTag(_myTag);
-				}
-
-				stopwatch.Stop();
-				_myMS += stopwatch.ElapsedMilliseconds;
+				_object.HasTag(_myTag);
 			}
 
-			_myMS /= ITERATIONS;
+			stopwatch.Stop();
+			UnityEngine.Debug.Log($"Scriptable Object Tag Comparer: {stopwatch.ElapsedMilliseconds} milliseconds");
 		}
 
 		[Button]
 		private void UnityTagTest()
 		{
-			_unityMS = 0;
+			Stopwatch stopwatch = new Stopwatch();
+			stopwatch.Start();
 
-			for (int i = 0; i < ITERATIONS; i++)
+			for (int j = 0; j < ITERATIONS; j++)
 			{
-				Stopwatch stopwatch = new Stopwatch();
-				stopwatch.Start();
-
-				for (int j = 0; j < 100000; j++)
-				{
-					_hasUnityTag = _object.CompareTag(_unityTag);
-				}
-
-				stopwatch.Stop();
-				_unityMS += stopwatch.ElapsedMilliseconds;
+				_object.CompareTag(_unityTag);
 			}
 
-			_unityMS /= ITERATIONS;
+			stopwatch.Stop();
+			UnityEngine.Debug.Log($"Unity Tag Comparer: {stopwatch.ElapsedMilliseconds} milliseconds");
 		}
 	}
 }
@@ -147,7 +126,7 @@ namespace ToolBox.Test
 <details><summary>Test Result</summary>	
 <p>
 	
-![Result](https://imgur.com/YedN04E.png)
+![Result](https://imgur.com/c8rnKdo.png)
 
 </p>
 </details>
