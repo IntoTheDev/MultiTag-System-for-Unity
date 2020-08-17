@@ -9,6 +9,9 @@ This package allows you to Tag your Game Objects with ScriptableObjects.
 
 ## Examples:
 
+### Creating new Tag/Container:
+Assets/Create/ToolBox/MultiTags
+
 ### Change Tags in Editor:
 ![](https://imgur.com/EPxkbza.png)
 
