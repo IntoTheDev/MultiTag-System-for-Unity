@@ -15,7 +15,7 @@ Assets/Create/ToolBox/MultiTags
 ### Change Tags in Editor:
 ![](https://imgur.com/EPxkbza.png)
 
-### Runtime Operations:
+### Runtime Operations (HasTag, HasTags, AddTag, RemoveTag):
 <details><summary>Code</summary>	
 <p>
 	
