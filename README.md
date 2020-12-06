@@ -1,5 +1,5 @@
 # MultiTag System for Unity
-This package allows you to Tag your Game Objects with ScriptableObjects.
+This package allows you to Tag Game Objects with ScriptableObjects.
 
 ## Features:
 - Allows to put as many Tags on your object as you want
