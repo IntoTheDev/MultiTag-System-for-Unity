@@ -8,7 +8,7 @@ This package allows you to Tag Game Objects with ScriptableObjects.
 - Works few times faster than Unity Tag Comparer
 
 ## How to Install
-### Git Installation
+### Git Installation (Best way to get latest version)
 
 If you have Git on your computer, you can open Package Manager indside Unity, select "Add package from Git url...", and paste link ```https://github.com/IntoTheDev/MultiTag-System-for-Unity.git```
 
