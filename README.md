@@ -21,12 +21,13 @@ Add ```"com.intothedev.multitags": "https://github.com/IntoTheDev/MultiTag-Syste
 Download latest package from the Release section
 Import MultiTags.unitypackage to your Unity Project
 
-## Examples:
+## Usage:
 
 ### Creating new Tag/Container:
 Assets/Create/ToolBox/MultiTags
 
 ### Change Tags in Editor:
+If you want change tags only in Runtime via code then ```Taggable``` component is unnecessary.
 ![](https://imgur.com/EPxkbza.png)
 
 ### Runtime Operations (HasTag, HasTags, AddTag, RemoveTag):
