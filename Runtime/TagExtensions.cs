@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 namespace ToolBox.Tags
 {
@@ -6,8 +6,6 @@ namespace ToolBox.Tags
 	{
 		public static void AddTag(this GameObject entity, Tag tag)
 		{
-			tag.Add(entity.GetHashCode());
-
 #if UNITY_EDITOR
 			var taggable = entity.GetComponent<Taggable>();
 
@@ -16,12 +14,12 @@ namespace ToolBox.Tags
 
 			taggable.AddTagInEditor(tag);
 #endif
+
+			tag.Add(entity.GetHashCode());
 		}
 
 		public static void RemoveTag(this GameObject entity, Tag tag)
 		{
-			tag.Remove(entity.GetHashCode());
-
 #if UNITY_EDITOR
 			var taggable = entity.GetComponent<Taggable>();
 
@@ -30,6 +28,8 @@ namespace ToolBox.Tags
 
 			taggable.RemoveTagInEditor(tag);
 #endif
+
+			tag.Remove(entity.GetHashCode());
 		}
 
 		public static bool HasTag(this GameObject entity, Tag tag) =>
