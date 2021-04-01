@@ -16,7 +16,9 @@ namespace ToolBox.Tags
 #endif
 		[SerializeField] private Tag[] _tags = default;
 
+#if UNITY_EDITOR
 		private static Tag[] _all = null;
+#endif
 		private int _hash = 0;
 
 		private void Awake()
