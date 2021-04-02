@@ -17,7 +17,7 @@ or
 Open the manifest.json file of your Unity project.
 Add ```"com.intothedev.multitags": "https://github.com/IntoTheDev/MultiTag-System-for-Unity.git"```
 
-### Manual Installation
+### Manual Installation (Version can be outdated)
 Download latest package from the Release section
 Import MultiTags.unitypackage to your Unity Project
 
