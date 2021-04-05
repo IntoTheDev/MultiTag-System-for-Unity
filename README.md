@@ -50,7 +50,7 @@ public class Test : MonoBehaviour
 		}
 		
 		// Check for Multiple Tags
-		// You can also pass in Tag array
+		// You can also pass in simple array of tags
 		if (_enemy.HasTags(_allEnemiesTags, allRequired: false))
 		{
 		
