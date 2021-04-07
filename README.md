@@ -1,7 +1,7 @@
 # MultiTag System for Unity
 This package allows you to Tag Game Objects with ScriptableObjects.
 
-## Features:
+## Features
 - Allows you to put as many Tags on your GameObject as you want
 - Adding and Removing Tags via Inspector and Code (Works faster in Build than in Editor because Inspector updating when tag added/removed from GameObject)
 - Work with ScriptableObjects instead of strings
@@ -21,16 +21,16 @@ Add ```"com.intothedev.multitags": "https://github.com/IntoTheDev/MultiTag-Syste
 Download latest package from the Release section.
 Import MultiTags.unitypackage to your Unity Project
 
-## Usage:
+## Usage
 
-### Creating new Tag/Container:
+### Creating new Tag/Container
 Assets/Create/ToolBox/MultiTags
 
-### Change Tags in Editor:
+### Change Tags in Editor
 If you want to change tags only in Runtime via code then ```Taggable``` component is unnecessary.
 ![](https://imgur.com/EPxkbza.png)
 
-### Runtime Operations (HasTag, HasTags, AddTag, RemoveTag):
+### Runtime Operations (HasTag, HasTags, AddTag, RemoveTag)
 <details><summary>Code</summary>	
 <p>
 	
@@ -68,13 +68,13 @@ public class Test : MonoBehaviour
 </p>
 </details>
 
-### Tags Container Usage:
+### Tags Container Usage
 Tags Container allows you to group tags in a single asset, which allows you to check a single object for multiple tags at once. In my games, I use containers most often for a system of relationships between entities.
 
 ![](https://imgur.com/XTM5YOU.png)
 
 
-### Performance Test:
+### Performance Test
 <details><summary>Code</summary>
 <p>
 
