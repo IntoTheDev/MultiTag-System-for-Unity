@@ -1,4 +1,4 @@
-﻿#if ODIN_INSPECTOR
+#if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
 #endif
 using UnityEngine;
@@ -11,22 +11,21 @@ namespace ToolBox.Tags
 #endif
 	public sealed class TagsContainer : ScriptableObject
 	{
-		[SerializeField] private Tag[] _tags = null;
+		[SerializeField] private Tag[] _tags = new Tag[0];
 
-		public void Add(GameObject instance)
+		internal void Add(GameObject instance, int hash)
 		{
 			for (int i = 0; i < _tags.Length; i++)
-				_tags[i].Add(instance);
+				_tags[i].Add(instance, hash);
 		}
 
-		public void Remove(GameObject instance)
+		internal void Remove(GameObject instance, int hash)
 		{
 			for (int i = 0; i < _tags.Length; i++)
-				_tags[i].Remove(instance);
+				_tags[i].Remove(instance, hash);
 		}
 
-		public bool HasInstance(GameObject instance, bool allRequired) =>
+		internal bool HasInstance(GameObject instance, bool allRequired) =>
 			instance.HasTags(_tags, allRequired);
 	}
 }
-
