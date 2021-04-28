@@ -66,6 +66,8 @@ public class Test : MonoBehaviour
 		// Removing Tag
 		_enemy.RemoveTag(_zombieTag);
 		
+		
+		// Getting all objects with tag
 		var zombies = _zombieTag.GetInstances();
 		
 		foreach (var zombie in zombies)
