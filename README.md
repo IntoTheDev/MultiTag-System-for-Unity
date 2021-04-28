@@ -7,9 +7,10 @@ This package allows you to Tag Game Objects with ScriptableObjects.
 
 ## Features
 - Allows you to put as many Tags on your GameObject as you want
-- Adding and Removing Tags via Inspector and Code (Works faster in Build than in Editor because Inspector needs to update Taggable component once tag added or removed from the GameObject)
+- Add and Remove Tags via Scripting and Inspector
 - Work with ScriptableObjects instead of strings
 - Works few times faster than Unity Tag Comparer
+- GetInstance method to get all GameObjects with tag
 
 ## How to Install
 ### Git Installation (Best way to get latest version)
