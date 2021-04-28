@@ -1,6 +1,10 @@
 # MultiTag System for Unity
 This package allows you to Tag Game Objects with ScriptableObjects.
 
+### TODO
+- [ ] Add support for inspector changes in editor play mode.
+- [ ] Tag code generator for quick tags access without reference in the inspector.
+
 ## Features
 - Allows you to put as many Tags on your GameObject as you want
 - Adding and Removing Tags via Inspector and Code (Works faster in Build than in Editor because Inspector needs to update Taggable component once tag added or removed from the GameObject)
