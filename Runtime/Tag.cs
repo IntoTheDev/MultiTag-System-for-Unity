@@ -1,4 +1,4 @@
-﻿#if ODIN_INSPECTOR
+#if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
 #endif
 using System.Collections.Generic;
@@ -12,11 +12,9 @@ namespace ToolBox.Tags
 #endif
 	public sealed class Tag : ScriptableObject
 	{
-#if ODIN_INSPECTOR
-		[ShowInInspector, ReadOnly]
-#endif
 		private readonly HashSet<int> _instancesHash = new HashSet<int>();
 		private readonly List<GameObject> _instances = new List<GameObject>(128);
+		private readonly List<GameObject> _temp = new List<GameObject>(128);
 
 		public void Add(GameObject instance)
 		{
@@ -45,15 +43,23 @@ namespace ToolBox.Tags
 
 		public IReadOnlyList<GameObject> GetInstances()
 		{
+			_temp.Clear();
+
 			for (int i = _instances.Count - 1; i >= 0; i--)
 			{
 				var instance = _instances[i];
 
 				if (instance == null)
+				{
 					_instances.RemoveAt(i);
+					continue;
+				}
+
+				if (instance.activeInHierarchy)
+					_temp.Add(instance);
 			}
 
-			return _instances.AsReadOnly();
+			return _temp.AsReadOnly();
 		}
 	}
 }
