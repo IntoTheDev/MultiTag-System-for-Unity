@@ -34,7 +34,7 @@ Assets/Create/ToolBox/MultiTags
 If you want to change tags only in Runtime via code then ```Taggable``` component is unnecessary.
 ![](https://imgur.com/EPxkbza.png)
 
-### Runtime Operations (HasTag, HasTags, AddTag, RemoveTag)
+### Runtime Operations (HasTag, HasTags, AddTag, RemoveTag, GetInstances)
 <details><summary>Code</summary>	
 <p>
 	
@@ -65,6 +65,13 @@ public class Test : MonoBehaviour
 		
 		// Removing Tag
 		_enemy.RemoveTag(_zombieTag);
+		
+		var zombies = _zombieTag.GetInstances();
+		
+		foreach (var zombie in zombies)
+		{
+			// Do something
+		}
 	}
 }
 ```	
