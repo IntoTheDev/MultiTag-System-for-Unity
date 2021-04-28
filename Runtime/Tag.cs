@@ -16,10 +16,8 @@ namespace ToolBox.Tags
 		private readonly List<GameObject> _instances = new List<GameObject>(128);
 		private readonly List<GameObject> _temp = new List<GameObject>(128);
 
-		public void Add(GameObject instance)
+		internal void Add(GameObject instance, int hash)
 		{
-			int hash = instance.GetHashCode();
-
 			if (!_instancesHash.Contains(hash))
 			{
 				_instances.Add(instance);
@@ -27,10 +25,8 @@ namespace ToolBox.Tags
 			}
 		}
 
-		public void Remove(GameObject instance)
+		internal void Remove(GameObject instance, int hash)
 		{
-			int hash = instance.GetHashCode();
-
 			if (_instancesHash.Contains(hash))
 			{
 				_instances.Remove(instance);
@@ -38,8 +34,8 @@ namespace ToolBox.Tags
 			}
 		}
 
-		public bool HasInstance(int instanceHash) =>
-			_instancesHash.Contains(instanceHash);
+		internal bool HasInstance(int hash) =>
+			_instancesHash.Contains(hash);
 
 		public IReadOnlyList<GameObject> GetInstances()
 		{
