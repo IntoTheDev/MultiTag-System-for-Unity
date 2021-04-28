@@ -1,6 +1,6 @@
 {
   "name": "com.intothedev.multitags",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "displayName": "MultiTags",
   "description": "This package allows you to Tag Game Objects with ScriptableObjects.",
   "author": {
