@@ -13,8 +13,20 @@ namespace ToolBox.Tags
 	{
 		[SerializeField] private Tag[] _tags = null;
 
-		public bool HasEntity(GameObject entity, bool allRequired) =>
-			entity.HasTags(_tags, allRequired);
+		public void Add(GameObject instance)
+		{
+			for (int i = 0; i < _tags.Length; i++)
+				_tags[i].Add(instance);
+		}
+
+		public void Remove(GameObject instance)
+		{
+			for (int i = 0; i < _tags.Length; i++)
+				_tags[i].Remove(instance);
+		}
+
+		public bool HasInstance(GameObject instance, bool allRequired) =>
+			instance.HasTags(_tags, allRequired);
 	}
 }
 

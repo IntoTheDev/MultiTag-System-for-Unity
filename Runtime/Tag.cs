@@ -15,16 +15,46 @@ namespace ToolBox.Tags
 #if ODIN_INSPECTOR
 		[ShowInInspector, ReadOnly]
 #endif
-		private HashSet<int> _entities = new HashSet<int>();
+		private readonly HashSet<int> _instancesHash = new HashSet<int>();
+		private readonly List<GameObject> _instances = new List<GameObject>(128);
 
-		public void Add(int entity) =>
-			_entities.Add(entity);
+		public void Add(GameObject instance)
+		{
+			int hash = instance.GetHashCode();
 
-		public void Remove(int entity) =>
-			_entities.Remove(entity);
+			if (!_instancesHash.Contains(hash))
+			{
+				_instances.Add(instance);
+				_instancesHash.Add(hash);
+			}
+		}
 
-		public bool HasEntity(int entity) =>
-			_entities.Contains(entity);
+		public void Remove(GameObject instance)
+		{
+			int hash = instance.GetHashCode();
+
+			if (_instancesHash.Contains(hash))
+			{
+				_instances.Remove(instance);
+				_instancesHash.Remove(hash);
+			}
+		}
+
+		public bool HasInstance(int instanceHash) =>
+			_instancesHash.Contains(instanceHash);
+
+		public IReadOnlyList<GameObject> GetInstances()
+		{
+			for (int i = _instances.Count - 1; i >= 0; i--)
+			{
+				var instance = _instances[i];
+
+				if (instance == null)
+					_instances.RemoveAt(i);
+			}
+
+			return _instances.AsReadOnly();
+		}
 	}
 }
 
