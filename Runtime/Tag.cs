@@ -15,6 +15,7 @@ namespace ToolBox.Tags
 		private readonly HashSet<int> _instancesHash = new HashSet<int>();
 		private readonly List<GameObject> _instances = new List<GameObject>(128);
 		private readonly List<GameObject> _temp = new List<GameObject>(128);
+		private IReadOnlyList<GameObject> _activeInstances = null;
 
 		internal void Add(GameObject instance, int hash)
 		{
@@ -55,7 +56,9 @@ namespace ToolBox.Tags
 					_temp.Add(instance);
 			}
 
-			return _temp.AsReadOnly();
+			_activeInstances = _temp;
+
+			return _activeInstances;
 		}
 	}
 }
