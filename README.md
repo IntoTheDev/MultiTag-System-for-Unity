@@ -61,6 +61,7 @@ public class Test : MonoBehaviour
 		}
 		
 		// Adding Tag
+		// Be careful, if you create a copy of an existing object with runtime added tags, these tags will not be copied to the new object.
 		_enemy.AddTag(_zombieTag);
 		
 		// Removing Tag
