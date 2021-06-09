@@ -4,6 +4,7 @@ This package allows you to Tag Game Objects with ScriptableObjects.
 ### TODO
 - [ ] Add support for inspector changes in editor play mode.
 - [ ] Tag code generator to quickly access tags without referencing them in the inspector.
+- [ ] Copying tags when Instantiate runtime instance
 
 ## Features
 - Allows you to put as many Tags on your GameObject as you want
