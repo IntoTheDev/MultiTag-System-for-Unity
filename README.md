@@ -2,15 +2,15 @@
 This package allows you to Tag Game Objects with ScriptableObjects.
 
 ### TODO
-- [ ] Add support for inspector changes in editor play mode.
-- [ ] Tag code generator to quickly access tags without referencing them in the inspector.
-- [ ] Copying tags when Instantiate runtime instance
+- [ ] Make inspector changes work in play mode
+- [ ] Add tag code generator to quickly access tags without referencing them in the inspector
+- [ ] Add API to get entity's runtime added tags
 
 ## Features
 - Allows you to put as many Tags on your GameObject as you want
-- Add and Remove Tags via Scripting and Inspector
+- Add and remove tags via code and inspector
 - Work with ScriptableObjects instead of strings
-- Faster than Unity's tag system: Adding/removing tags, checking for tags, getting all objects with tag.
+- Faster than Unity's tag system. Performance in editor is worse than in build.
 
 ## How to Install
 ### Git Installation (Best way to get latest version)
