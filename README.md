@@ -10,7 +10,7 @@ This package allows you to Tag Game Objects with ScriptableObjects.
 - Allows you to put as many Tags on your GameObject as you want
 - Add and remove tags via code and inspector
 - Work with ScriptableObjects instead of strings
-- Faster than Unity's tag system. Performance in editor is worse than in build.
+- Faster than Unity's tag system. Keep in mind that performance in build even faster than in editor
 
 ## How to Install
 ### Git Installation (Best way to get latest version)
