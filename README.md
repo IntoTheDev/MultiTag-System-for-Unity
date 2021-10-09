@@ -2,7 +2,7 @@
 This package allows you to Tag Game Objects with ScriptableObjects.
 
 ### TODO
-- [ ] Editor support
+- [ ] Editor support with custom inspector
 - [ ] Add tag code generator to quickly access tags without referencing them in the inspector
 - [ ] Add API to get entity's runtime added tags
 
