@@ -1,17 +1,20 @@
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
 #endif
+using System;
 using UnityEngine;
 
 namespace ToolBox.Tags
 {
-	[CreateAssetMenu(menuName = "ToolBox/MultiTags/Tags Container")]
+	[CreateAssetMenu(menuName = "ToolBox/Tags/Composite Tag")]
 #if ODIN_INSPECTOR
 	[AssetSelector, Required]
 #endif
-	public sealed class TagsContainer : ScriptableObject
+	public sealed class CompositeTag : ScriptableObject
 	{
-		[SerializeField] private Tag[] _tags = new Tag[0];
+		[SerializeField] private Tag[] _tags = Array.Empty<Tag>();
+
+		internal Tag[] Tags => _tags;
 
 		internal void Add(GameObject instance, int hash)
 		{
@@ -25,7 +28,9 @@ namespace ToolBox.Tags
 				_tags[i].Remove(instance, hash);
 		}
 
-		internal bool HasInstance(GameObject instance, bool allRequired) =>
-			instance.HasTags(_tags, allRequired);
+		internal bool HasInstance(GameObject instance, bool allRequired)
+		{
+			return instance.HasTags(_tags, allRequired);
+		}
 	}
 }
