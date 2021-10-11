@@ -34,6 +34,7 @@ Assets/Create/ToolBox/Tags
 
 ### Change Tags in Editor
 If you want to change tags only in Runtime via code then ```Taggable``` component is unnecessary.
+
 ![](https://i.imgur.com/4IMUydj.png)
 
 ### Runtime Operations (HasTag, HasTags, AddTag, RemoveTag, GetInstances, etc)
