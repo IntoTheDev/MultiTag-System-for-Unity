@@ -2,7 +2,7 @@
 This package allows you to Tag Game Objects with ScriptableObjects.
 
 ### TODO
-- [ ] Editor support with custom inspector
+- [x] Editor support with custom inspector
 - [ ] Add tag code generator to quickly access tags without referencing them in the inspector
 - [ ] Add API to get entity's runtime added tags
 
@@ -11,6 +11,7 @@ This package allows you to Tag Game Objects with ScriptableObjects.
 - Add and remove tags via code and inspector
 - Work with ScriptableObjects instead of strings
 - Faster than Unity's tag system. Keep in mind that performance in build even faster than in editor
+- Editor support
 
 ## How to Install
 ### Git Installation (Best way to get latest version)
@@ -28,23 +29,25 @@ Import MultiTags.unitypackage to your Unity Project
 
 ## Usage
 
-### Creating new Tag/Container
-Assets/Create/ToolBox/MultiTags
+### How to create a new Tag/CompositeTag
+Assets/Create/ToolBox/Tags
 
 ### Change Tags in Editor
 If you want to change tags only in Runtime via code then ```Taggable``` component is unnecessary.
-![](https://imgur.com/EPxkbza.png)
+![](https://i.imgur.com/4IMUydj.png)
 
-### Runtime Operations (HasTag, HasTags, AddTag, RemoveTag, GetInstances)
+### Runtime Operations (HasTag, HasTags, AddTag, RemoveTag, GetInstances, etc)
 <details><summary>Code</summary>	
-<p>
+<p>	
 	
 ```csharp
+using ToolBox.Tags;
+	
 public class Test : MonoBehaviour
 {
 	[SerializeField] private GameObject _enemy = null;
 	[SerializeField] private Tag _zombieTag = null;
-	[SerializeField] private TagsContainer _allEnemiesTags = null;
+	[SerializeField] private CompositeTag _allEnemiesTags = null;
  
 	private void Awake()
 	{
@@ -61,21 +64,27 @@ public class Test : MonoBehaviour
 		
 		}
 		
-		// Adding Tag
-		// Be careful, if you create a copy of an existing object with runtime added tags, these tags will not be copied to the new object.
+		// Add Tag
+		// Be careful, if you create a copy of an existing object with added/removed tags via API (AddTag, RemoveTag, etc). 
+		// These tags will not be copied to the new object. 
+		// But I'll implement a way to copy tags in the future.
 		_enemy.AddTag(_zombieTag);
 		
-		// Removing Tag
+		// Remove Tag
 		_enemy.RemoveTag(_zombieTag);
 		
 		
-		// Getting all objects with tag
+		// Get all objects with tag
 		var zombies = _zombieTag.GetInstances();
 		
 		foreach (var zombie in zombies)
 		{
 			// Do something
 		}
+	
+		// Instead of gameObject you can use any class that inherits from Component (transform, collider, etc)
+		// Example:
+		_enemy.transform.AddTag(_zombieTag);
 	}
 }
 ```	
@@ -83,10 +92,12 @@ public class Test : MonoBehaviour
 </p>
 </details>
 
-### Tags Container Usage
-Tags Container allows you to group tags in a single asset, which allows you to check a single object for multiple tags at once. In my games, I use containers most often for a system of relationships between entities.
+### CompositeTag Usage
+CompositeTag allows you to combine tags into single asset and use API with that asset (AddTags, RemoveTags, HasTags)
 
-![](https://imgur.com/XTM5YOU.png)
+Example: 
+
+![](https://i.imgur.com/nnxY4kj.png)
 
 
 ### Performance Test
@@ -143,17 +154,6 @@ namespace ToolBox.Test
 }
 
 ```
-</p>
-</details>
-
-<details><summary>Scene and Objects Setup</summary>	
-<p>
-	
-![Scene Setup](https://imgur.com/IgSjjpz.png)
-
-![A Object Setup](https://imgur.com/0kkITFa.png)
-
-![B Object Setup](https://imgur.com/4DVS3XP.png)
 </p>
 </details>
 
