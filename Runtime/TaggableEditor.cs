@@ -6,7 +6,7 @@ using UnityEngine;
 namespace ToolBox.Tags.Editor
 {
 	[CustomEditor(typeof(Taggable))]
-	public class TaggableEditor : UnityEditor.Editor
+	internal class TaggableEditor : UnityEditor.Editor
 	{
 		private Tag[] _tags = null;
 
@@ -34,14 +34,21 @@ namespace ToolBox.Tags.Editor
 				GUI.color = contains ? Color.green : Color.red;
 				EditorGUILayout.ObjectField(tag, typeof(Tag), false);
 				GUI.color = Color.white;
-
+				
 				GUI.enabled = !contains;
 				if (GUILayout.Button("Add", EditorStyles.miniButtonLeft))
 				{
-					Undo.RecordObject(taggable, "Add tag");
+					Undo.SetCurrentGroupName("Add tag");
 					
+					Undo.RecordObject(taggable, "Add gameObject to Tag");
 					tag.Add(instance, hash);
+					
+					Undo.RecordObject(taggable, "Add Tag in the Inspector");
 					taggable.Add(tag);
+					
+					Undo.CollapseUndoOperations(Undo.GetCurrentGroup());
+					
+					contains = true;
 					
 					EditorUtility.SetDirty(taggable);
 				}
@@ -49,10 +56,15 @@ namespace ToolBox.Tags.Editor
 				GUI.enabled = contains;
 				if (GUILayout.Button("Remove", EditorStyles.miniButtonLeft))
 				{
-					Undo.RecordObject(taggable, "Remove tag");
+					Undo.SetCurrentGroupName("Remove tag");
 					
+					Undo.RecordObject(taggable, "Remove gameObject from Tag");
 					tag.Remove(instance, hash);
+					
+					Undo.RecordObject(taggable, "Remove Tag in the Inspector");
 					taggable.Remove(tag);
+					
+					Undo.CollapseUndoOperations(Undo.GetCurrentGroup());
 					
 					EditorUtility.SetDirty(taggable);
 				}

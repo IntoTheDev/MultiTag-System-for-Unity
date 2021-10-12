@@ -2,6 +2,7 @@
 using Sirenix.OdinInspector;
 #endif
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ToolBox.Tags
@@ -14,7 +15,7 @@ namespace ToolBox.Tags
 	{
 		[SerializeField] private Tag[] _tags = Array.Empty<Tag>();
 
-		internal Tag[] Tags => _tags;
+		internal IEnumerable<Tag> Tags => _tags;
 
 		internal void Add(GameObject instance, int hash)
 		{

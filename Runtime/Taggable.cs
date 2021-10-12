@@ -1,6 +1,3 @@
-#if ODIN_INSPECTOR
-using Sirenix.OdinInspector;
-#endif
 using System;
 #if UNITY_EDITOR
 using UnityEditor;
@@ -12,9 +9,6 @@ namespace ToolBox.Tags
 	[DisallowMultipleComponent, DefaultExecutionOrder(-9000), ExecuteInEditMode]
 	internal sealed class Taggable : MonoBehaviour
 	{
-#if ODIN_INSPECTOR
-		[Required, AssetList]
-#endif
 		[SerializeField] private Tag[] _tags = Array.Empty<Tag>();
 
 		private void Awake()
@@ -27,7 +21,7 @@ namespace ToolBox.Tags
 			gameObject.RemoveTags(_tags);
 		}
 
-		#if UNITY_EDITOR
+#if UNITY_EDITOR
 		internal void Add(Tag tag)
 		{
 			ArrayUtility.Add(ref _tags, tag);
@@ -42,6 +36,6 @@ namespace ToolBox.Tags
 		{
 			return ArrayUtility.Contains(_tags, tag);
 		}
-		#endif
+#endif
 	}
 }
